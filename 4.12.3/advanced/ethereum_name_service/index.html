@@ -1541,13 +1541,12 @@ System.out.println("ENS address = " + ensResolver.resolve(ensName));
 </li>
 <li>
 <p>Reverse Resolution from address to Primary ENS:</p>
-<p><code>java
-// 0x225f137127d9067788314bc7fcc1f36746a3c3B5 -&gt; luc.eth
+<p><code>// 0x225f137127d9067788314bc7fcc1f36746a3c3B5 -&gt; luc.eth
 String ensPrimaryName = ensResolver.reverseResolve("0x225f137127d9067788314bc7fcc1f36746a3c3B5");</code></p>
 </li>
 <li>
 <p>Set primary ENS name for any address:</p>
-<p>```java
+<p>```
 Credentials credentials = Credentials.create("<private_key>");</p>
 <p>// Set Primary Name
 TransactionReceipt receiptResult1 = ensResolver.setReverseName("nick.eth", credentials);</p>
@@ -1566,7 +1565,7 @@ TransactionReceipt receiptResult2 = ensResolver.setReverseName(
 </li>
 <li>
 <p>Get nameHash and labelHash for ENS:</p>
-<p>```java
+<p>```
 // ENS name: luc.eth
 String nameHashString = NameHash.nameHash("luc.eth");
 byte[] nameHash = NameHash.nameHashAsBytes("luc.eth");</p>
@@ -1579,7 +1578,7 @@ String dnsEncodedName = NameHash.dnsEncode("name.eth");
 </li>
 <li>
 <p>Getting and setting ENS records:</p>
-<p>```java
+<p>```
 // Get ENS text
 String url = ensResolver.getEnsText("nick.eth", "url");</p>
 <p>// Set ENS text
@@ -1588,8 +1587,7 @@ TransactionReceipt receiptResult3 = ensResolver.setEnsText("nick.eth", "url", "h
 </li>
 <li>
 <p>Get Owner and Resolver address for any ENS name:</p>
-<p><code>java
-String resolver = ensResolver.getResolverAddress("luc.eth");
+<p><code>String resolver = ensResolver.getResolverAddress("luc.eth");
 String owner = ensResolver.getOwnerAddress("luc.eth");</code></p>
 </li>
 </ol>
