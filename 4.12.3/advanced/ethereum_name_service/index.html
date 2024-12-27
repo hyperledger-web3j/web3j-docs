@@ -1532,60 +1532,65 @@ tools:</p>
 <ol>
 <li>
 <p>Forward resolution from ENS to address:</p>
-<p>```java 
-Web3j web3j = Web3j.build(new HttpService(<rpc_endpoint_url>));
+<p>```java
+Web3j web3j = Web3j.build(new HttpService("<rpc_endpoint_url>"));
 EnsResolver ensResolver = new EnsResolver(web3j);</p>
-<p>String ensName =  ENSNormalize.ENSIP15.normalize("nick.eth");
+<p>String ensName = ENSNormalize.ENSIP15.normalize("nick.eth");
 System.out.println("ENS address = " + ensResolver.resolve(ensName));
-```
-2. Reverse Resolution from address to Primary ENS:</p>
-<p><code>java
-// 0x225f137127d9067788314bc7fcc1f36746a3c3B5 -&gt; luc.eth
-String ensPrimaryName = ensResolver.reverseResolve('0x225f137127d9067788314bc7fcc1f36746a3c3B5');</code></p>
+```</p>
 </li>
 <li>
-<p>You can also set primary ENS name for any address:</p>
+<p>Reverse Resolution from address to Primary ENS:</p>
+<p><code>java
+// 0x225f137127d9067788314bc7fcc1f36746a3c3B5 -&gt; luc.eth
+String ensPrimaryName = ensResolver.reverseResolve("0x225f137127d9067788314bc7fcc1f36746a3c3B5");</code></p>
+</li>
+<li>
+<p>Set primary ENS name for any address:</p>
 <p>```java
-Credentials credentials = Credentials.create(<private_key>)</p>
+Credentials credentials = Credentials.create("<private_key>");</p>
 <p>// Set Primary Name
-TransactionReceipt receiptResult = ensResolver.setReverseName('nick.eth', credentials);</p>
+TransactionReceipt receiptResult1 = ensResolver.setReverseName("nick.eth", credentials);</p>
 <p>// Set Primary Name for Contract (or Address)
 // for address = 0x225f137127d9067788314bc7fcc1f36746a3c3B5
 // owner address (function caller) = credentials.getAddress()
 // resolver address = 0x9010A27463717360cAD99CEA8bD39b8705CCA238
-TransactionReceipt receiptResult = ensResolver.setReverseName('0x225f137127d9067788314bc7fcc1f36746a3c3B5',
-        credentials.getAddress(), '0x9010A27463717360cAD99CEA8bD39b8705CCA238',
-        'nick.eth', credentials);
+TransactionReceipt receiptResult2 = ensResolver.setReverseName(
+    "0x225f137127d9067788314bc7fcc1f36746a3c3B5",
+    credentials.getAddress(),
+    "0x9010A27463717360cAD99CEA8bD39b8705CCA238",
+    "nick.eth",
+    credentials
+);
 ```</p>
 </li>
 <li>
-<p>You can get nameHash and labelHash for ENS:</p>
+<p>Get nameHash and labelHash for ENS:</p>
 <p>```java
 // ENS name: luc.eth
-String nameHashString = NameHash.nameHash('luc.eth');
-byte[] nameHash = NameHash.nameHashAsBytes('luc.eth');</p>
+String nameHashString = NameHash.nameHash("luc.eth");
+byte[] nameHash = NameHash.nameHashAsBytes("luc.eth");</p>
 <p>// ENS label: luc
-String labelHashString = NameHash.nameHash('luc');
-byte[] labelHash = NameHash.nameHashAsBytes('luc');</p>
+String labelHashString = NameHash.nameHash("luc");
+byte[] labelHash = NameHash.nameHashAsBytes("luc");</p>
 <p>// DNS Encoded Name
-String dnsEncodedName = NameHash.dnsEncode('name.eth');
+String dnsEncodedName = NameHash.dnsEncode("name.eth");
 ```</p>
 </li>
 <li>
 <p>Getting and setting ENS records:</p>
 <p>```java
 // Get ENS text
-String url = ensResolver.getEnsText('nick.eth', 'url');</p>
+String url = ensResolver.getEnsText("nick.eth", "url");</p>
 <p>// Set ENS text
-Credentials credentials = Credentials.create(<private_key>);
-TransactionReceipt receiptResult = ensResolver.setEnsText('nick.eth', 'url', 'http://example.com', credentials);
+TransactionReceipt receiptResult3 = ensResolver.setEnsText("nick.eth", "url", "http://example.com", credentials);
 ```</p>
 </li>
 <li>
-<p>For any ENS name you can get Owner and Resolver address:</p>
+<p>Get Owner and Resolver address for any ENS name:</p>
 <p><code>java
-String resolver = ensResolver.getResolverAddress('luc.eth');
-String owner = ensResolver.getOwnerAddress('luc.eth')</code></p>
+String resolver = ensResolver.getResolverAddress("luc.eth");
+String owner = ensResolver.getOwnerAddress("luc.eth");</code></p>
 </li>
 </ol>
 <h2 id="web3j-implementation">Web3j implementation<a class="headerlink" href="#web3j-implementation" title="Permanent link">&para;</a></h2>
